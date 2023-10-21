@@ -31,6 +31,8 @@ return new class extends Migration
             $table->string('lib_soporte', 250);
             $table->string('lib_idioma', 250);
             $table->integer('lib_estado')->default(1);
+
+            $table->timestamps();
         });
 
 

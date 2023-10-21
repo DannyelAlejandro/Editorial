@@ -5,7 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateLibrosRequest;
 use App\Http\Requests\UpdateLibrosRequest;
 use App\Http\Controllers\AppBaseController;
+use App\Models\Libros;
+use App\Repositories\AutorRepository;
+use App\Repositories\EditorialRepository;
 use App\Repositories\LibrosRepository;
+use App\Repositories\TiposRepository;
 use Illuminate\Http\Request;
 use Flash;
 
@@ -13,10 +17,16 @@ class LibrosController extends AppBaseController
 {
     /** @var LibrosRepository $librosRepository*/
     private $librosRepository;
+    private $auRepository;
+    private $editorialsRepository;
+    private $typesRepository;
 
-    public function __construct(LibrosRepository $librosRepo)
+    public function __construct(LibrosRepository $librosRepo, AutorRepository $auRepository, EditorialRepository $editorialRepository, TiposRepository $typesRepository)
     {
         $this->librosRepository = $librosRepo;
+        $this->auRepository = $auRepository;
+        $this->editorialsRepository = $editorialRepository;
+        $this->typesRepository = $typesRepository;
     }
 
     /**
@@ -24,10 +34,9 @@ class LibrosController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $libros = $this->librosRepository->paginate(10);
+        $libros = Libros::with(['aut', 'edi', 'tip'])->paginate(10);
 
-        return view('libros.index')
-            ->with('libros', $libros);
+        return view('libros.index', compact('libros'));
     }
 
     /**
@@ -35,7 +44,12 @@ class LibrosController extends AppBaseController
      */
     public function create()
     {
-        return view('libros.create');
+        $authors = $this->auRepository->getAuthorsAgruped();
+        $editorials = $this->editorialsRepository->getEditorialsAgruped();
+        $types = $this->typesRepository->getTypesAgruped();
+
+        //dd(auth()->user()->id);
+        return view('libros.create', compact('authors', 'editorials', 'types'));
     }
 
     /**
@@ -74,6 +88,9 @@ class LibrosController extends AppBaseController
     public function edit($id)
     {
         $libros = $this->librosRepository->find($id);
+        $authors = $this->auRepository->getAuthorsAgruped();
+        $editorials = $this->editorialsRepository->getEditorialsAgruped();
+        $types = $this->typesRepository->getTypesAgruped();
 
         if (empty($libros)) {
             Flash::error('Libros not found');
@@ -81,7 +98,7 @@ class LibrosController extends AppBaseController
             return redirect(route('libros.index'));
         }
 
-        return view('libros.edit')->with('libros', $libros);
+        return view('libros.edit', compact('authors', 'editorials', 'types'))->with('libros', $libros);
     }
 
     /**

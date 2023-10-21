@@ -13,6 +13,8 @@
 <link href="plugins/kalendar/kalendar.css" rel="stylesheet">
 <link rel="stylesheet" href="plugins/scroll/nanoscroller.css">
 <link href="plugins/morris/morris.css" rel="stylesheet" />
+<link href="plugins/data-tables/DT_bootstrap.css" rel="stylesheet" />
+
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
 <div class="wrapper">
@@ -708,7 +710,8 @@
 <script src="plugins/sparkline/easy-pie-chart.js"></script>
 <script src="plugins/morris/morris.min.js" type="text/javascript"></script> 
 <script src="plugins/morris/raphael-min.js" type="text/javascript"></script>  
-<script src="plugins/morris/morris-script.js"></script> 
+<script src="plugins/morris/morris-script.js"></script>
+<script src="plugins/data-tables/jquery.dataTables.js"></script>
 
 
 
@@ -724,8 +727,6 @@
 <script src="js/side-chats.js"></script>
 <script src="js/jquery.slimscroll.min.js"></script>
 <script src="plugins/scroll/jquery.nanoscroller.js"></script>
-
-
 
 </body>
 </html>

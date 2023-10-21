@@ -3,19 +3,19 @@
         <table class="table" id="editorials-table">
             <thead>
             <tr>
-                <th>Edi Nombre</th>
-                <th>Edi Ruc</th>
-                <th>Edi Direccion</th>
-                <th>Edi Telefono</th>
-                <th>Edi Celular</th>
-                <th>Edi Pais</th>
-                <th>Edi Provincia</th>
-                <th>Edi Ciudad</th>
-                <th>Edi Codigo Postal</th>
-                <th>Edi Sitio Web</th>
-                <th>Edi Instagram</th>
-                <th>Edi Facebook</th>
-                <th colspan="3">Action</th>
+                <th>Nombre</th>
+                <th>Ruc</th>
+                <th>Direccion</th>
+                <th>Telefono</th>
+                <th>Celular</th>
+                <th>Pais</th>
+                <th>Provincia</th>
+                <th>Ciudad</th>
+                <th>Codigo Postal</th>
+                <th>Sitio Web</th>
+                <th>Instagram</th>
+                <th>Facebook</th>
+                <th colspan="3">Acciones</th>
             </tr>
             </thead>
             <tbody>

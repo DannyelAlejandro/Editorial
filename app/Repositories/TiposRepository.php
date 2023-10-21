@@ -22,4 +22,15 @@ class TiposRepository extends BaseRepository
     {
         return Tipos::class;
     }
+
+    public function getTypesAgruped() : array {
+        $types = [];
+        $aux = $this->model->where('tip_estado', 1)->get();
+
+        foreach ($aux as $type) 
+            $types[$type->tip_id] = $type->tip_siglas;
+
+        return $types;
+        
+    }
 }

@@ -16,7 +16,7 @@
                         @csrf
 
                         <div class="input-group mb-3">
-                            <input type="email" name="email" value="{{ old('email') }}" placeholder="Email"
+                            <input type="text" name="email" value="{{ old('email') }}" placeholder="Email" autofocus
                                 class="form-control @error('email') is-invalid @enderror">
                             <div class="input-group-append">
                                 <div class="input-group-text"><span class="fas fa-envelope"></span></div>

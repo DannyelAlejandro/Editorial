@@ -3,10 +3,10 @@
         <table class="table" id="tipos-table">
             <thead>
             <tr>
-                <th>Tip Descripcion</th>
-                <th>Tip Siglas</th>
-                <th>Tip Estado</th>
-                <th colspan="3">Action</th>
+                <th>Descripción</th>
+                <th>Siglas</th>
+                <th>Estado</th>
+                <th colspan="3">Acciones</th>
             </tr>
             </thead>
             <tbody>
@@ -14,7 +14,7 @@
                 <tr>
                     <td>{{ $tipos->tip_descripcion }}</td>
                     <td>{{ $tipos->tip_siglas }}</td>
-                    <td>{{ $tipos->tip_estado }}</td>
+                    <td>{{ ($tipos->tip_estado) ? 'Activo' : 'Inactivo' }}</td>
                     <td  style="width: 120px">
                         {!! Form::open(['route' => ['tipos.destroy', $tipos->tip_id], 'method' => 'delete']) !!}
                         <div class='btn-group'>

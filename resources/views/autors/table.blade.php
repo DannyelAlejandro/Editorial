@@ -3,10 +3,10 @@
         <table class="table" id="autors-table">
             <thead>
             <tr>
-                <th>Aut Apellidos</th>
-                <th>Aut Nombres</th>
-                <th>Aut Sitio Web</th>
-                <th colspan="3">Action</th>
+                <th>Apellidos</th>
+                <th>Nombres</th>
+                <th>Sitio Web</th>
+                <th colspan="3">Acciones</th>
             </tr>
             </thead>
             <tbody>

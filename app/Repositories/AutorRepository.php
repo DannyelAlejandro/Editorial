@@ -22,4 +22,14 @@ class AutorRepository extends BaseRepository
     {
         return Autor::class;
     }
+
+    public function getAuthorsAgruped() : array {
+        $authors = [];
+        $aux = $this->model->all();
+
+        foreach ($aux as $author) 
+            $authors[$author->aut_id] = $author->aut_nombres  . ' ' . $author->aut_apellidos;
+
+        return $authors;
+    }
 }

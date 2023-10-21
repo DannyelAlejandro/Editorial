@@ -19,7 +19,7 @@
 
         <div class="card">
 
-            {!! Form::model($multimedia, ['route' => ['multimedia.update', $multimedia->mlt_id], 'method' => 'patch']) !!}
+            {!! Form::model($multimedia, ['route' => ['multimedia.update', $multimedia->mlt_id], 'method' => 'patch', 'enctype' => 'multipart/form-data']) !!}
 
             <div class="card-body">
                 <div class="row">
@@ -28,8 +28,8 @@
             </div>
 
             <div class="card-footer">
-                {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-                <a href="{{ route('multimedia.index') }}" class="btn btn-default"> Cancel </a>
+                {!! Form::submit('Guardar', ['class' => 'btn btn-primary']) !!}
+                <a href="{{ route('multimedia.index') }}" class="btn btn-default"> Cancelar </a>
             </div>
 
             {!! Form::close() !!}

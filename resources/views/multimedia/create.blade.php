@@ -19,7 +19,7 @@
 
         <div class="card">
 
-            {!! Form::open(['route' => 'multimedia.store']) !!}
+            {!! Form::open(['route' => 'multimedia.store', 'enctype' => 'multipart/form-data']) !!}
 
             <div class="card-body">
 
@@ -30,8 +30,8 @@
             </div>
 
             <div class="card-footer">
-                {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-                <a href="{{ route('multimedia.index') }}" class="btn btn-default"> Cancel </a>
+                {!! Form::submit('Guardar', ['class' => 'btn btn-primary']) !!}
+                <a href="{{ route('multimedia.index') }}" class="btn btn-default"> Cancelar </a>
             </div>
 
             {!! Form::close() !!}

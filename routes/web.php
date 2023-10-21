@@ -26,6 +26,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    
+    Route::resource('tipos', App\Http\Controllers\TiposController::class);
+    Route::resource('editorials', App\Http\Controllers\EditorialController::class);
+    Route::resource('autors', App\Http\Controllers\AutorController::class);
+    Route::resource('libros', App\Http\Controllers\LibrosController::class);
+    Route::resource('multimedia', App\Http\Controllers\MultimediaController::class);
 });
 
 require __DIR__.'/auth.php';
@@ -33,10 +39,3 @@ require __DIR__.'/auth.php';
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes();
-
-
-Route::resource('tipos', App\Http\Controllers\TiposController::class);
-Route::resource('editorials', App\Http\Controllers\EditorialController::class);
-Route::resource('autors', App\Http\Controllers\AutorController::class);
-Route::resource('libros', App\Http\Controllers\LibrosController::class);
-Route::resource('multimedia', App\Http\Controllers\MultimediaController::class);

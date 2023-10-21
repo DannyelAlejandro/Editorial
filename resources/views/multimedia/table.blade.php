@@ -6,13 +6,13 @@
                 <th>Lib Id</th>
                 <th>Mlt Tipo</th>
                 <th>Mlt Multimedia</th>
-                <th colspan="3">Action</th>
+                <th colspan="3">Acciones</th>
             </tr>
             </thead>
             <tbody>
             @foreach($multimedia as $multimedia)
                 <tr>
-                    <td>{{ $multimedia->lib_id }}</td>
+                    <td>{{ $multimedia->lib->lib_titulo }}</td>
                     <td>{{ $multimedia->mlt_tipo }}</td>
                     <td>{{ $multimedia->mlt_multimedia }}</td>
                     <td  style="width: 120px">
@@ -36,9 +36,9 @@
         </table>
     </div>
 
-    <div class="card-footer clearfix">
+    {{--<div class="card-footer clearfix">
         <div class="float-right">
             @include('adminlte-templates::common.paginate', ['records' => $multimedia])
         </div>
-    </div>
+    </div>--}}
 </div>

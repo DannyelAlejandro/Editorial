@@ -71,7 +71,7 @@ class Libros extends Model
 
     public function tip(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(\App\Models\Tipo::class, 'tip_id');
+        return $this->belongsTo(\App\Models\Tipos::class, 'tip_id');
     }
 
     public function usu(): \Illuminate\Database\Eloquent\Relations\BelongsTo

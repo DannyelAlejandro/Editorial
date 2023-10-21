@@ -35,4 +35,15 @@ class LibrosRepository extends BaseRepository
     {
         return Libros::class;
     }
+
+    public function getBooksAgruped() : array {
+        $books = [];
+        $aux = $this->model->all();
+
+        foreach ($aux as $book) 
+            $books[$book->lib_id] = $book->lib_titulo;
+
+        return $books;
+        
+    }
 }

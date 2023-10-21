@@ -31,4 +31,15 @@ class EditorialRepository extends BaseRepository
     {
         return Editorial::class;
     }
+
+    public function getEditorialsAgruped() : array {
+        $editorials = [];
+        $aux = $this->model->all();
+
+        foreach ($aux as $editorial) 
+            $editorials[$editorial->edi_id] = $editorial->edi_nombre;
+
+        return $editorials;
+        
+    }
 }

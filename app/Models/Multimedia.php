@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Multimedia extends Model
 {
     public $table = 'multimedia';
+    public $timestamps = false;
 
     protected $primaryKey = 'mlt_id';
 
@@ -29,6 +30,6 @@ class Multimedia extends Model
 
     public function lib(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(\App\Models\Libro::class, 'lib_id');
+        return $this->belongsTo(\App\Models\Libros::class, 'lib_id');
     }
 }

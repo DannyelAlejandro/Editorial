@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateMultimediaRequest;
 use App\Http\Requests\UpdateMultimediaRequest;
 use App\Http\Controllers\AppBaseController;
+use App\Repositories\LibrosRepository;
 use App\Repositories\MultimediaRepository;
 use Illuminate\Http\Request;
 use Flash;
@@ -13,10 +14,12 @@ class MultimediaController extends AppBaseController
 {
     /** @var MultimediaRepository $multimediaRepository*/
     private $multimediaRepository;
+    private $librosRepository;
 
-    public function __construct(MultimediaRepository $multimediaRepo)
+    public function __construct(MultimediaRepository $multimediaRepo, LibrosRepository $librosRepository)
     {
         $this->multimediaRepository = $multimediaRepo;
+        $this->librosRepository = $librosRepository;
     }
 
     /**
@@ -35,14 +38,22 @@ class MultimediaController extends AppBaseController
      */
     public function create()
     {
-        return view('multimedia.create');
+        $books = $this->librosRepository->getBooksAgruped();
+
+        return view('multimedia.create', compact('books'));
     }
 
     /**
      * Store a newly created Multimedia in storage.
      */
-    public function store(CreateMultimediaRequest $request)
+    public function store(Request $request)
     {
+        $file = $request->temp_multimedia;
+        $request->request->remove('temp_multimedia');
+        
+        $fileName = $file->store('public/medias');
+        $request->merge(['mlt_multimedia' => $fileName]);
+
         $input = $request->all();
 
         $multimedia = $this->multimediaRepository->create($input);
@@ -73,6 +84,7 @@ class MultimediaController extends AppBaseController
      */
     public function edit($id)
     {
+        $books = $this->librosRepository->getBooksAgruped();
         $multimedia = $this->multimediaRepository->find($id);
 
         if (empty($multimedia)) {
@@ -81,7 +93,7 @@ class MultimediaController extends AppBaseController
             return redirect(route('multimedia.index'));
         }
 
-        return view('multimedia.edit')->with('multimedia', $multimedia);
+        return view('multimedia.edit', compact('books'))->with('multimedia', $multimedia);
     }
 
     /**
@@ -91,6 +103,17 @@ class MultimediaController extends AppBaseController
     {
         $multimedia = $this->multimediaRepository->find($id);
 
+        if ($request->hasFile('temp_multimedia')) {
+            $file = $request->file('temp_multimedia');
+            $request->request->remove('temp_multimedia');
+            
+            $fileName = $file->store('public/medias');
+        } else {
+            $fileName = $multimedia->mlt_multimedia;
+        }
+
+        $request->merge(['mlt_multimedia' => $fileName]);
+        
         if (empty($multimedia)) {
             Flash::error('Multimedia not found');
 

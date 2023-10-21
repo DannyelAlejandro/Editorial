@@ -1,34 +1,32 @@
 <div class="card-body p-0">
     <div class="table-responsive">
-        <table class="table" id="libros-table">
+        <table class="table data-table" id="libros-table">
             <thead>
             <tr>
-                <th>Aut Id</th>
-                <th>Edi Id</th>
-                <th>Usu Id</th>
-                <th>Tip Id</th>
-                <th>Lib Publicacion Tipo</th>
-                <th>Lib Isbn</th>
-                <th>Lib Titulo</th>
-                <th>Lib Fecha Publicacion</th>
-                <th>Lib Edicion</th>
-                <th>Lib Paginas</th>
-                <th>Lib Tamano</th>
-                <th>Lib Precio</th>
-                <th>Lib Encuadernacion</th>
-                <th>Lib Soporte</th>
-                <th>Lib Idioma</th>
-                <th>Lib Estado</th>
-                <th colspan="3">Action</th>
+                <th>Autor</th>
+                <th>Editorial</th>
+                <th>Tipo</th>
+                <th>Publicacion Tipo</th>
+                <th>Isbn</th>
+                <th>Titulo</th>
+                <th>Fecha Publicacion</th>
+                <th>Edicion</th>
+                <th>Paginas</th>
+                <th>Tamano</th>
+                <th>Precio</th>
+                <th>Encuadernacion</th>
+                <th>Soporte</th>
+                <th>Idioma</th>
+                <th>Estado</th>
+                <th colspan="3">Acciones</th>
             </tr>
             </thead>
             <tbody>
             @foreach($libros as $libros)
                 <tr>
-                    <td>{{ $libros->aut_id }}</td>
-                    <td>{{ $libros->edi_id }}</td>
-                    <td>{{ $libros->usu_id }}</td>
-                    <td>{{ $libros->tip_id }}</td>
+                    <td>{{ $libros->aut->aut_nombres . ' ' . $libros->aut->aut_apellidos }}</td>
+                    <td>{{ $libros->edi->edi_nombre }}</td>
+                    <td>{{ $libros->tip->tip_descripcion }}</td>
                     <td>{{ $libros->lib_publicacion_tipo }}</td>
                     <td>{{ $libros->lib_isbn }}</td>
                     <td>{{ $libros->lib_titulo }}</td>
@@ -40,7 +38,7 @@
                     <td>{{ $libros->lib_encuadernacion }}</td>
                     <td>{{ $libros->lib_soporte }}</td>
                     <td>{{ $libros->lib_idioma }}</td>
-                    <td>{{ $libros->lib_estado }}</td>
+                    <td>{{ ($libros->lib_estado) ? 'Disponible' : 'Agotado' }}</td>
                     <td  style="width: 120px">
                         {!! Form::open(['route' => ['libros.destroy', $libros->lib_id], 'method' => 'delete']) !!}
                         <div class='btn-group'>
@@ -60,11 +58,5 @@
             @endforeach
             </tbody>
         </table>
-    </div>
-
-    <div class="card-footer clearfix">
-        <div class="float-right">
-            @include('adminlte-templates::common.paginate', ['records' => $libros])
-        </div>
     </div>
 </div>

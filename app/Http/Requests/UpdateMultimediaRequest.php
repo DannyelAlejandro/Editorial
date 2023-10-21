@@ -25,6 +25,7 @@ class UpdateMultimediaRequest extends FormRequest
     public function rules()
     {
         $rules = Multimedia::$rules;
+        $rules['mlt_multimedia'] = 'string|max:250';
         
         return $rules;
     }
